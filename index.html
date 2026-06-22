@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root{
+    --primary:#00e5ff;
+    --secondary:#7c4dff;
+    --accent:#ff4081;
+    --dark:#0f172a;
+    --card:#1e293b;
+    --light:#f8fafc;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--dark);
+    color:white;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(15,23,42,.85);
+    backdrop-filter:blur(12px);
+    z-index:1000;
+}
+
+.logo{
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--primary);
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover,
+nav a.active{
+    color:var(--primary);
+}
+
+.menu{
+    display:none;
+    font-size:1.5rem;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:60px;
+    padding:100px 10%;
+    flex-wrap:wrap;
+}
+
+.profile{
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    border:6px solid var(--primary);
+    object-fit:cover;
+    box-shadow:0 0 40px rgba(0,229,255,.4);
+    animation:float 4s ease-in-out infinite;
+}
+
+.hero-content{
+    max-width:650px;
+    animation:fadeUp 1.2s ease;
+}
+
+.hero h1{
+    font-size:4rem;
+    line-height:1.1;
+}
+
+.hero span{
+    color:var(--primary);
+}
+
+.hero h2{
+    color:#cbd5e1;
+    margin:10px 0;
+}
+
+.hero p{
+    margin:20px 0;
+    color:#cbd5e1;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 32px;
+    border-radius:40px;
+    background:linear-gradient(45deg,var(--primary),var(--secondary));
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.4s;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+/* SECTION */
+
+section{
+    padding:100px 10%;
+}
+
+.title{
+    text-align:center;
+    font-size:2.8rem;
+    margin-bottom:60px;
+    color:var(--primary);
+}
+
+/* SKILLS */
+
+.skill{
+    margin-bottom:25px;
+}
+
+.skill-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.bar{
+    width:100%;
+    height:14px;
+    background:#334155;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    width:0;
+    border-radius:20px;
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+    transition:2s;
+}
+
+/* PROJECTS */
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.links{
+    margin-top:15px;
+}
+
+.links a{
+    color:var(--primary);
+    text-decoration:none;
+    margin-right:15px;
+}
+
+/* GITHUB */
+
+.repo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.repo{
+    background:var(--card);
+    padding:20px;
+    border-radius:15px;
+}
+
+.repo a{
+    color:var(--primary);
+}
+
+/* CONTACT */
+
+.contact{
+    max-width:700px;
+    margin:auto;
+}
+
+.socials{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.socials a{
+    font-size:2rem;
+    color:var(--primary);
+    margin:0 10px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input,
+textarea{
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#1e293b;
+    color:white;
+}
+
+textarea{
+    min-height:150px;
+}
+
+button{
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(
+        45deg,
+        var(--primary),
+        var(--secondary)
+    );
+    color:white;
+    cursor:pointer;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#94a3b8;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    nav ul{
+        position:absolute;
+        top:70px;
+        right:0;
+        width:250px;
+        flex-direction:column;
+        background:#1e293b;
+        display:none;
+        padding:20px;
+    }
+
+    nav ul.show{
+        display:flex;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero h1{
+        font-size:2.6rem;
+    }
+
+    .hero{
+        text-align:center;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Portfolio</div>
+
+    <ul id="navMenu">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#github" class="nav-link">GitHub</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="menu">
+        <i class="fas fa-bars"></i>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+
+    <img
+    src="https://via.placeholder.com/300"
+    class="profile"
+    alt="profile">
+
+    <div class="hero-content">
+
+        <h1>Hello, I'm <span>Your Name</span></h1>
+
+        <h2>Full Stack Developer</h2>
+
+        <p>
+            Building modern websites,
+            web apps, and creative digital experiences.
+        </p>
+
+        <a href="#projects" class="btn">
+            Explore Projects
+        </a>
+
+    </div>
+
+</section>
+
+<section id="skills">
+
+    <h2 class="title">Skills</h2>
+
+    <div class="skill">
+        <div class="skill-header">
+            <span>HTML</span>
+            <span>95%</span>
+        </div>
+        <div class="bar">
+            <div class="progress" data-width="95%"></div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <div class="skill-header">
+            <span>CSS</span>
+            <span>90%</span>
+        </div>
+        <div class="bar">
+            <div class="progress" data-width="90%"></div>
+        </div>
+    </div>
+
+    <div class="skill">
+        <div class="skill-header">
+            <span>JavaScript</span>
+            <span>88%</span>
+        </div>
+        <div class="bar">
+            <div class="progress" data-width="88%"></div>
+        </div>
+    </div>
+
+</section>
+
+<section id="projects">
+
+<h2 class="title">Projects</h2>
+
+<div class="projects">
+
+<div class="card">
+<img src="https://picsum.photos/600/400?1">
+<div class="card-content">
+<h3>E-Commerce App</h3>
+<p>Modern online shopping platform.</p>
+<div class="links">
+<a href="#">GitHub</a>
+<a href="#">Live Demo</a>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/600/400?2">
+<div class="card-content">
+<h3>Dashboard UI</h3>
+<p>Interactive analytics dashboard.</p>
+<div class="links">
+<a href="#">GitHub</a>
+<a href="#">Live Demo</a>
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/600/400?3">
+<div class="card-content">
+<h3>Portfolio Site</h3>
+<p>Creative responsive portfolio website.</p>
+<div class="links">
+<a href="#">GitHub</a>
+<a href="#">Live Demo</a>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="github">
+
+<h2 class="title">Latest GitHub Repositories</h2>
+
+<div class="repo-grid" id="repos">
+Loading repositories...
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2 class="title">Contact</h2>
+
+<div class="contact">
+
+<div class="socials">
+<a href="#"><i class="fab fa-github"></i></a>
+<a href="#"><i class="fab fa-linkedin"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="mailto:you@example.com">
+<i class="fas fa-envelope"></i>
+</a>
+</div>
+
+<form id="contactForm">
+
+<input
+type="text"
+id="name"
+placeholder="Name">
+
+<input
+type="email"
+id="email"
+placeholder="Email">
+
+<textarea
+id="message"
+placeholder="Message"></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 Your Name | GitHub Portfolio
+</footer>
+
+<script>
+
+/* MOBILE MENU */
+
+const menu = document.querySelector('.menu');
+const navMenu = document.getElementById('navMenu');
+
+menu.onclick = () => {
+    navMenu.classList.toggle('show');
+};
+
+/* ACTIVE NAVIGATION */
+
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+
+    let current = '';
+
+    sections.forEach(section => {
+
+        const top =
+        section.offsetTop - 150;
+
+        if(scrollY >= top){
+            current = section.id;
+        }
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove('active');
+
+        if(link.href.includes(current)){
+            link.classList.add('active');
+        }
+    });
+});
+
+/* SKILL ANIMATION */
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            document
+            .querySelectorAll('.progress')
+            .forEach(bar => {
+
+                bar.style.width =
+                bar.dataset.width;
+            });
+        }
+    });
+
+});
+
+observer.observe(
+document.querySelector('#skills')
+);
+
+/* GITHUB API */
+/* Replace username below */
+
+const username = "octocat";
+
+fetch(
+`https://api.github.com/users/${username}/repos?sort=updated`
+)
+.then(res => res.json())
+.then(data => {
+
+let html = "";
+
+data.slice(0,6).forEach(repo => {
+
+html += `
+<div class="repo">
+<h3>${repo.name}</h3>
+<p>${repo.description || 'No description available'}</p>
+<a href="${repo.html_url}" target="_blank">
+View Repository
+</a>
+</div>
+`;
+});
+
+document.getElementById("repos").innerHTML = html;
+
+})
+.catch(() => {
+document.getElementById("repos").innerHTML =
+"Unable to load repositories.";
+});
+
+/* CONTACT FORM */
+
+document
+.getElementById("contactForm")
+.addEventListener("submit", e => {
+
+e.preventDefault();
+
+const name =
+document.getElementById("name").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+const message =
+document.getElementById("message").value.trim();
+
+if(!name || !email || !message){
+alert("Please fill all fields.");
+return;
+}
+
+const emailPattern =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(!emailPattern.test(email)){
+alert("Enter valid email.");
+return;
+}
+
+alert("Message sent successfully!");
+e.target.reset();
+
+});
+
+</script>
+
+</body>
+</html>
